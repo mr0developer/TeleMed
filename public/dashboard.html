@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | TeleMed</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Your Dashboard</h1>
+    <nav>
+      <a href="patientProfile.html">Profile</a>
+      <a href="#" id="logout">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="role-based-options"></div>
+  </main>
+
+  <script>
+    // Display role-specific dashboard options
+    const role = localStorage.getItem('role');
+
+    const roleOptions = document.getElementById('role-based-options');
+    
+    if (role === 'patient') {
+      roleOptions.innerHTML = `
+        <h2>Patient Dashboard</h2>
+        <ul>
+          <li><a href="bookAppointment.html">Book an Appointment</a></li>
+          <li><a href="viewAppointments.html">View Appointments</a></li>
+          <li><a href="patientProfile.html">Manage Profile</a></li>
+        </ul>
+      `;
+    } else if (role === 'doctor') {
+      roleOptions.innerHTML = `
+        <h2>Doctor Dashboard</h2>
+        <ul>
+          <li><a href="manageSchedule.html">Manage Schedule</a></li>
+          <li><a href="viewAppointments.html">View Appointments</a></li>
+          <li><a href="doctorProfile.html">Manage Profile</a></li>
+        </ul>
+      `;
+    }
+
+    // Logout functionality
+    document.getElementById('logout').addEventListener('click', function() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
